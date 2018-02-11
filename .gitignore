@@ -1,0 +1,7 @@
+.idea/
+__pycache__/
+*.dat
+*.png
+*.jpg
+
+random_walk/build/randomWalk
