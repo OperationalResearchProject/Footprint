@@ -13,6 +13,7 @@ def main():
 def generateInstances(instance_size, number):
 	bash_command = "QAPGenerators/doInstances.sh " + str(instance_size) + " " + str(number)
 	process = subprocess.Popen(bash_command.split(), stdout=subprocess.PIPE)
+	process.wait()
 
 
 def generateFootprint(instance_size, number):
@@ -25,12 +26,14 @@ def generateFootprint(instance_size, number):
 		output_file_rl = "random_walk/data/footprint_rl_" + str(instance_size) + "_" + str(i) + ".dat"
 		bash_command = str(binary) + " " + str(instance_file_rl) + " " + str(seed) + " " + str(walk_length) + " " + str(output_file_rl)
 		process = subprocess.Popen(bash_command.split(), stdout=subprocess.PIPE)
+		process.wait()
 
 		instance_file_uni = "instances/qap_uni_" + str(instance_size) + "_" + str(i) + ".dat"
 		output_file_uni = "random_walk/data/footprint_uni_" + str(instance_size) + "_" + str(i) + ".dat"
 		bash_command_uni = str(binary) + " " + str(instance_file_uni) + " " + str(seed) + " " + str(walk_length) + " " + str(output_file_uni)
 		print(bash_command_uni)
 		process_uni = subprocess.Popen(bash_command_uni.split(), stdout=subprocess.PIPE)
+		process_uni.wait()
 
 		generateImage(output_file_uni, "footprints/fp_uni_" + str(instance_size) + "_" + str(i) + ".png")
 		generateImage(output_file_rl, "footprints/fp_rl_" + str(instance_size) + "_" + str(i) + ".png")
