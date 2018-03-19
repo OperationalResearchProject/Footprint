@@ -4,17 +4,19 @@ from generateImg import generateImage
 
 
 def main():
-    if len(sys.argv) < 3:
+    if len(sys.argv) < 4:
         print("Error : ")
         print(" - first argument : instance size")
         print(" - second argument : number of instance wanted")
+        print(" - third argument : the seed")
         exit(-1)
 
     instance_size = int(sys.argv[1])
     number_instance = int(sys.argv[2])
-
+    seed = int(sys.argv[3])
+    print(instance_size)
     generateInstances(instance_size, number_instance)
-    generateFootprint(instance_size, number_instance)
+    generateFootprint(instance_size, number_instance, seed)
 
     print("All footprints pictures are generated in folder footprints/")
 
@@ -25,9 +27,8 @@ def generateInstances(instance_size, number):
     process.wait()
 
 
-def generateFootprint(instance_size, number):
+def generateFootprint(instance_size, number, seed):
     binary = "random_walk/build/randomWalk"
-    seed = "1"
     walk_length = "500"
 
     for i in range(number):
